@@ -1,0 +1,9 @@
+
+# Location of METS
+observer_lat = 60.2172
+observer_lng = 24.3946
+observer_alt = 74.042
+
+# Desired time period and minimum pass duration
+days = 1
+min_visibility = 60

@@ -5,7 +5,7 @@ Quick and simple Python code that downloads the next visible passes of a list of
 from [n2yo.com]. Currently it just formulates a query and returns the JSON that the API
 returns.
 
-Requires Python 3 and the `requests` package.
+Requires Python 3 and the `requests` and `toml` packages.
 
 ## Usage
 

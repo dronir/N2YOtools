@@ -1,4 +1,5 @@
 import requests
+import toml
 from pprint import pprint
 from sys import argv
 
@@ -6,15 +7,8 @@ from sys import argv
 API_KEY = open("N2YO_API_KEY.txt").read().strip()
 key_info = {"apiKey" : API_KEY}
 
-# Parameters of the observer and desired observation arcs (one day in the future, 
-# minimum 60 second pass).
-base_params = {
-    "observer_lat" : 60.2172,
-    "observer_lng" : 24.3946,
-    "observer_alt" : 74.042,
-    "days" : 1,
-    "min_visibility" : 60
-}
+# Load basic query parameters from 'config.toml'
+base_params = toml.loads(open("config.toml").read())
 
 # URL templates to the N2YO API, used to produce the query URL below
 BASE_URL = "https://www.n2yo.com/rest/v1/satellite/"
