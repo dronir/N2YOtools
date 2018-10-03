@@ -1,14 +1,22 @@
 import requests
 import toml
 from pprint import pprint
-from sys import argv
+from sys import argv, exit
+from os import path
 
 # Load N2YO API key from file (get your own key by registering at N2YO.com)
-API_KEY = open("N2YO_API_KEY.txt").read().strip()
-key_info = {"apiKey" : API_KEY}
+if path.exists("N2YO_API_KEY.txt"):
+    API_KEY = open("N2YO_API_KEY.txt").read().strip()
+else:
+    print("Error: API key file (N2YO_API_KEY.txt) not found!")
+    exit()
 
 # Load basic query parameters from 'config.toml'
-base_params = toml.loads(open("config.toml").read())
+if path.exists("config.toml"):
+    base_params = toml.loads(open("config.toml").read())
+else:
+    print("Error: config.toml not found!")
+    exit()
 
 # URL templates to the N2YO API, used to produce the query URL below
 BASE_URL = "https://www.n2yo.com/rest/v1/satellite/"
@@ -25,7 +33,7 @@ def retrieve_data(QUERY_URL, debug=False):
     "Retrieve data from given URL."
     if debug:
         print("Requesting data from: {}".format(QUERY_URL))
-    r = requests.get(QUERY_URL, params=key_info)
+    r = requests.get(QUERY_URL, params={"apiKey" : API_KEY})
     if debug and r.status_code == requests.codes.ok:
         print("Success.")
         return r.json()
