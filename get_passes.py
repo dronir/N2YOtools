@@ -34,12 +34,13 @@ def retrieve_data(QUERY_URL, debug=False):
     if debug:
         print("Requesting data from: {}".format(QUERY_URL))
     r = requests.get(QUERY_URL, params={"apiKey" : API_KEY})
-    if debug and r.status_code == requests.codes.ok:
-        print("Success.")
+    if r.status_code == requests.codes.ok:
+        if debug:
+            print("Success.")
         return r.json()
     elif debug:
-        print("Failed (status code {})!".format(r.status_code))
-        return "{}"
+        print("Failed! (status code {})".format(r.status_code))
+    return "{}"
 
 def read_ids(filename, debug=False):
     "Read a list of satellite ID numbers from given filename."
