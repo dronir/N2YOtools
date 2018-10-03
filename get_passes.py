@@ -37,7 +37,7 @@ def retrieve_data(QUERY_URL, debug=False):
         return r.json()
     elif debug:
         print("Failed (status code {})!".format(r.status_code))
-        return ""
+        return "{}"
 
 def read_ids(filename, debug=False):
     "Read a list of satellite ID numbers from given filename."
