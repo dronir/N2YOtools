@@ -58,7 +58,7 @@ def get_single(ID, debug=False):
     query_params["id"] = ID
     if debug:
         print("Query parameters:")
-        print(query_params)
+        pprint(query_params)
     URL = parse_query(query_params, debug)
     data = retrieve_data(URL, debug)
     return data
